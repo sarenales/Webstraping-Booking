@@ -12,12 +12,11 @@ print(response.status_code)
 soup = BeautifulSoup(response.text, 'lxml')
 
 
-
 if response.status_code == 200: 
     # obtener la lista de noticias de la respuesta
     # new_list = response.json()['data']
     # abrir un fichero csv para guardar los datos
-    with open('new.csv', 'w', newline='', encoding='utf-8') as csvfile:
+    with open('hoteles.csv', 'w', newline='', encoding='utf-8') as csvfile:
         # crear un objeto DictWriter para escribir los datos en el fichero csv
         writer = csv.DictWriter(csvfile, fieldnames=['nombre', 'url', 'localizacion','numero coments','desayuno','cancelacion','precio'])
         # escribir los encabezados
@@ -57,7 +56,7 @@ if response.status_code == 200:
                     print(cancelation)
 
                 # clase a predecir
-                price = item.select('.fcab3ed991.fbd1d3018c.e729ed5ab6')[0].get_text().strip()
+                price = item.select('.fcab3ed991.fbd1d3018c.e729ed5ab6')[0].get_text().strip().split('$')[1]
                 print(price)  # price
 
             
