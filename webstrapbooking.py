@@ -12,6 +12,7 @@ print(response.status_code)
 soup = BeautifulSoup(response.text, 'lxml')
 
 
+
 if response.status_code == 200: 
     # obtener la lista de noticias de la respuesta
     # new_list = response.json()['data']
@@ -34,23 +35,25 @@ if response.status_code == 200:
                 location = item.select('.f4bd0794db.b4273d69aa')[0].get_text().strip()
                 print(location)  # location
 
-                num_coments = item.select('.d8eab2cf7f.c90c0a70d3.db63693c62')[0].get_text().strip()
+                num_coments = item.select('.d8eab2cf7f.c90c0a70d3.db63693c62')[0].get_text().strip().split()[0]
                 print(num_coments) #hw many commets
                 try:
-                    breakfast = item.select('.e05969d63d')[0].get_text().strip()
+                    b = item.select('.e05969d63d')[0].get_text().strip()
+                    breakfast = 1
                     print(breakfast) # breakfast?
                 except Exception as e2:
-                    breakfast='No hay desayuno incluido'
+                    breakfast = 0
                     print(breakfast)
                 
                 #print(item.select('.e4755bbd60')[0])             # number of stars
 
 
                 try:
-                    cancelation = item.select('.d506630cf3')[0].get_text().strip()
+                    c = item.select('.d506630cf3')[0].get_text().strip()
+                    cancelation = 1
                     print(cancelation)    # cancelation
                 except Exception as e1:
-                    cancelation = 'No hay cancelacion'
+                    cancelation = 0
                     print(cancelation)
 
                 # clase a predecir
